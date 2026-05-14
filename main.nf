@@ -69,24 +69,23 @@ def get_help_message() {
  """.stripIndent()
 }
 
-if (params.help) {
- println get_help_message()
- exit 0
-}
-
-// Validate inputs
-if (!params.input_fastq_dir && !params.samplesheet) {
- println "ERROR: Either --input_fastq_dir or --samplesheet is required"
- exit 1
-}
-
-if (!params.ctat_genome_lib_dir) {
- println "ERROR: --ctat_genome_lib_dir is required"
- exit 1
-}
-
 // Main workflow
 workflow {
+
+ // Help message
+ if (params.help) {
+     println get_help_message()
+     exit 0
+ }
+
+ // Validate inputs
+ if (!params.input_fastq_dir && !params.samplesheet) {
+     error "Either --input_fastq_dir or --samplesheet is required"
+ }
+
+ if (!params.ctat_genome_lib_dir) {
+     error "--ctat_genome_lib_dir is required"
+ }
  
  // Create input channel
  if (params.samplesheet) {
@@ -140,25 +139,3 @@ workflow {
  }
 }
 
-workflow.onComplete {
- println """
- ========================================
- Pipeline completed successfully!
- ========================================
- Results: ${params.outdir}
- - Fusions: ${params.outdir}/star_fusion/
- - Validated: ${params.outdir}/fusion_inspector/
- - QC Report: ${params.outdir}/multiqc/multiqc_report.html
- - Execution: ${params.outdir}/execution_report.html
- """.stripIndent()
-}
-
-workflow.onError {
- println """
- ========================================
- Pipeline failed!
- ========================================
- Error: ${workflow.errorMessage}
- Logs: .nextflow.log
- """
-}
