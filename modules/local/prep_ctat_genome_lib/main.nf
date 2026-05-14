@@ -2,6 +2,8 @@ process PREP_CTAT_GENOME_LIB {
     tag "prep_ctat_genome_lib"
     label 'process_high'
 
+    // prep_genome_lib.pl is bundled inside the STAR-Fusion bioconda package
+    // (via ctat-genome-lib-builder): https://github.com/TrinityCTAT/ctat-genome-lib-builder
     conda "${moduleDir}/environment.yml"
     container "community.wave.seqera.io/library/star-fusion:1.12.0--hdfd78af_0"
 
@@ -31,7 +33,7 @@ process PREP_CTAT_GENOME_LIB {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        star-fusion: \$(STAR-Fusion --version 2>&1 | grep -oP 'STAR-Fusion_v\\K[0-9.]+' || echo "1.12.0")
+        star-fusion (ctat-genome-lib-builder): \$(STAR-Fusion --version 2>&1 | grep -oP 'STAR-Fusion_v\\K[0-9.]+' || echo "1.12.0")
     END_VERSIONS
     """
 
@@ -42,7 +44,7 @@ process PREP_CTAT_GENOME_LIB {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        star-fusion: 1.12.0
+        star-fusion (ctat-genome-lib-builder): 1.12.0
     END_VERSIONS
     """
 }

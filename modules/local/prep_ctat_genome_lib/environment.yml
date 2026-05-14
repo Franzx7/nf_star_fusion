@@ -1,0 +1,9 @@
+name: prep_ctat_genome_lib
+# prep_genome_lib.pl is shipped inside the star-fusion bioconda package
+# Source: https://github.com/TrinityCTAT/ctat-genome-lib-builder
+channels:
+    - bioconda
+    - conda-forge
+    - defaults
+dependencies:
+    - bioconda::star-fusion=1.12.0
