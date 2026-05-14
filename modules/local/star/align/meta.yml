@@ -1,0 +1,105 @@
+---
+name: "star_align"
+description: "Align RNA-seq reads to a reference genome using STAR"
+keywords:
+  - alignment
+  - map
+  - fastq
+  - bam
+  - sam
+  - star
+  - rna-seq
+tools:
+  - "star":
+      description: "Spliced Transcripts Alignment to a Reference"
+      homepage: "https://github.com/alexdobin/STAR"
+      documentation: "https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf"
+      tool_dev_url: "https://github.com/alexdobin/STAR"
+      doi: "10.1093/bioinformatics/bts635"
+      licence: ["MIT"]
+      identifier: biotools:star
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'sample1', single_end:false ]
+    - reads:
+        type: file
+        description: |
+          List of input FastQ files of size 1 and 2 for single-end and paired-end data,
+          respectively.
+        pattern: "*.{fq,fastq,fq.gz,fastq.gz}"
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. [ id:'genome' ]
+    - index:
+        type: directory
+        description: STAR genome index directory
+        pattern: "star/"
+
+output:
+  - bam:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'sample1', single_end:false ]
+      - "*.Aligned.sortedByCoord.out.bam":
+          type: file
+          description: STAR aligned BAM file
+          pattern: "*.Aligned.sortedByCoord.out.bam"
+  - chimeric_junctions:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'sample1', single_end:false ]
+      - "*.Chimeric.out.junction":
+          type: file
+          description: STAR chimeric junctions file
+          pattern: "*.Chimeric.out.junction"
+  - splice_junctions:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'sample1', single_end:false ]
+      - "*.SJ.out.tab":
+          type: file
+          description: STAR splice junctions file
+          pattern: "*.SJ.out.tab"
+  - log_final:
+      - meta:
+          type: map
+      - "*.Log.final.out":
+          type: file
+          description: STAR final log file
+          pattern: "*.Log.final.out"
+  - log_out:
+      - meta:
+          type: map
+      - "*.Log.out":
+          type: file
+          description: STAR output log file
+          pattern: "*.Log.out"
+  - log_progress:
+      - meta:
+          type: map
+      - "*.Log.progress.out":
+          type: file
+          description: STAR progress log file
+          pattern: "*.Log.progress.out"
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+
+authors:
+  - "@Franzx7"
+maintainers:
+  - "@Franzx7"

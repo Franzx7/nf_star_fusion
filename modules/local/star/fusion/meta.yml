@@ -1,0 +1,78 @@
+---
+name: "star_fusion"
+description: "Detect fusion transcripts using STAR-Fusion"
+keywords:
+  - fusion
+  - transcripts
+  - star-fusion
+  - rna-seq
+  - oncology
+tools:
+  - "star-fusion":
+      description: "STAR-Fusion uses the STAR aligner to identify candidate fusion transcripts"
+      homepage: "https://github.com/STAR-Fusion/STAR-Fusion"
+      documentation: "https://github.com/STAR-Fusion/STAR-Fusion/wiki"
+      tool_dev_url: "https://github.com/STAR-Fusion/STAR-Fusion"
+      doi: "10.1186/s13059-019-1842-9"
+      licence: ["BSD-3-Clause"]
+      identifier: biotools:star-fusion
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'sample1', single_end:false ]
+    - chimeric_junctions:
+        type: file
+        description: Chimeric junctions file from STAR
+        pattern: "*.Chimeric.out.junction"
+    - bam:
+        type: file
+        description: BAM file from STAR alignment
+        pattern: "*.bam"
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. [ id:'ctat_genome_lib' ]
+    - ctat_genome_lib:
+        type: directory
+        description: CTAT genome library directory
+        pattern: "*"
+
+output:
+  - predictions:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'sample1', single_end:false ]
+      - "*.star-fusion.fusion_predictions.tsv":
+          type: file
+          description: STAR-Fusion fusion predictions file
+          pattern: "*.star-fusion.fusion_predictions.tsv"
+  - predictions_abridged:
+      - meta:
+          type: map
+      - "*.star-fusion.fusion_predictions.abridged.tsv":
+          type: file
+          description: STAR-Fusion abridged fusion predictions
+          pattern: "*.star-fusion.fusion_predictions.abridged.tsv"
+  - outdir:
+      - meta:
+          type: map
+      - "*_star_fusion_outdir":
+          type: directory
+          description: STAR-Fusion output directory
+          pattern: "*_star_fusion_outdir"
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+
+authors:
+  - "@Franzx7"
+maintainers:
+  - "@Franzx7"

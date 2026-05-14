@@ -1,0 +1,78 @@
+---
+name: "fusioninspector"
+description: "Validate and inspect fusion predictions"
+keywords:
+  - fusion
+  - validation
+  - inspector
+  - rna-seq
+  - oncology
+tools:
+  - "fusioninspector":
+      description: "FusionInspector assists in fusion transcript discovery"
+      homepage: "https://github.com/FusionInspector/FusionInspector"
+      documentation: "https://github.com/FusionInspector/FusionInspector/wiki"
+      tool_dev_url: "https://github.com/FusionInspector/FusionInspector"
+      doi: "10.1186/s13059-019-1842-9"
+      licence: ["BSD-3-Clause"]
+      identifier: biotools:fusioninspector
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'sample1', single_end:false ]
+    - fusion_predictions:
+        type: file
+        description: Fusion predictions file from STAR-Fusion
+        pattern: "*.tsv"
+    - bam:
+        type: file
+        description: BAM file from STAR alignment
+        pattern: "*.bam"
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. [ id:'ctat_genome_lib' ]
+    - ctat_genome_lib:
+        type: directory
+        description: CTAT genome library directory
+        pattern: "*"
+
+output:
+  - fusions:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'sample1', single_end:false ]
+      - "*.FusionInspector.fusions.tsv":
+          type: file
+          description: FusionInspector validated fusions file
+          pattern: "*.FusionInspector.fusions.tsv"
+  - fusions_abridged:
+      - meta:
+          type: map
+      - "*.FusionInspector.fusions.abridged.tsv":
+          type: file
+          description: FusionInspector abridged fusions file
+          pattern: "*.FusionInspector.fusions.abridged.tsv"
+  - outdir:
+      - meta:
+          type: map
+      - "*_fusion_inspector_outdir":
+          type: directory
+          description: FusionInspector output directory
+          pattern: "*_fusion_inspector_outdir"
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+
+authors:
+  - "@Franzx7"
+maintainers:
+  - "@Franzx7"
