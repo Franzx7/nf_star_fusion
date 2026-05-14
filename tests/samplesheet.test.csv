@@ -1,0 +1,2 @@
+sample_id,read1,read2
+test_sample,tests/data/rnaseq_1.fastq.gz,tests/data/rnaseq_2.fastq.gz
