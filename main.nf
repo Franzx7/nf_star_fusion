@@ -91,8 +91,13 @@ workflow {
                 tuple(meta, [file(row.read1), file(row.read2)])
             }
     } else {
+        // Supports: sample_R1.fastq.gz / sample_R2.fastq.gz
+        //       and sample_1.fastq.gz  / sample_2.fastq.gz
         samples = Channel
-            .fromFilePairs("${params.input_fastq_dir}/*{_R1,_1}{.fq,.fastq}{,.gz}")
+            .fromFilePairs([
+                "${params.input_fastq_dir}/*_{R1,R2}{.fq,.fastq}{,.gz}",
+                "${params.input_fastq_dir}/*_{1,2}{.fq,.fastq}{,.gz}"
+            ])
             .map { sample_id, reads ->
                 def meta = [id: sample_id]
                 tuple(meta, reads)
