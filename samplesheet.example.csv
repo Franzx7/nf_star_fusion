@@ -1,0 +1,4 @@
+sample_id,read1,read2
+sample1,./data/fastqs/sample1_R1.fastq.gz,./data/fastqs/sample1_R2.fastq.gz
+sample2,./data/fastqs/sample2_R1.fastq.gz,./data/fastqs/sample2_R2.fastq.gz
+sample3,./data/fastqs/sample3_R1.fastq.gz,./data/fastqs/sample3_R2.fastq.gz

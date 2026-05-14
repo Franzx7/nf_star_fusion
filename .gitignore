@@ -1,0 +1,53 @@
+# .gitignore for STAR-Fusion Nextflow Pipeline
+
+# Nextflow
+.nextflow/
+.nextflow.log*
+.nextflow.pid
+work/
+trace_*
+timeline_*
+report_*
+dag_*
+
+# Results and outputs
+results/
+output/
+*.bam
+*.bai
+*.sam
+*.vcf
+*.vcf.gz
+*.tbi
+
+# Local reference data (can be large)
+references/*.tar.gz
+references/CTAT_LR/
+references/indices/
+
+# Test data (optional)
+data/fastqs/*.fastq.gz
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Logs
+logs/
+*.log
+
+# OS specific
+Thumbs.db
+.DS_Store

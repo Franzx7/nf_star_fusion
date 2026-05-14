@@ -1,0 +1,11 @@
+{
+  "input_fastq_dir": "./data/fastqs",
+  "ctat_genome_lib_dir": "./references/CTAT_LR",
+  "outdir": "./results",
+  "skip_fastqc": false,
+  "skip_multiqc": false,
+  "min_junction_reads": 1,
+  "min_spanning_frags": 0,
+  "star_threads": 8,
+  "star_memory_gb": 30
+}
