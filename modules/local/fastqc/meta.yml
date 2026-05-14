@@ -2,57 +2,57 @@
 name: "fastqc"
 description: "Run FastQC on sequenced reads"
 keywords:
-  - quality control
-  - qc
-  - adapters
-  - fastq
+    - quality control
+    - qc
+    - adapters
+    - fastq
 tools:
-  - "fastqc":
-      description: "A quality control tool for high throughput sequence data"
-      homepage: "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/"
-      documentation: "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/"
-      tool_dev_url: "https://github.com/s-andrews/FastQC"
-      licence: ["GPL v3"]
-      identifier: biotools:fastqc
+    - "fastqc":
+            description: "A quality control tool for high throughput sequence data"
+            homepage: "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/"
+            documentation: "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/"
+            tool_dev_url: "https://github.com/s-andrews/FastQC"
+            licence: ["GPL v3"]
+            identifier: biotools:fastqc
 
 input:
-  - - meta:
-        type: map
-        description: |
-          Groovy Map containing sample information
-          e.g. [ id:'sample1', single_end:false ]
-    - reads:
-        type: file
-        description: |
-          List of input FastQ files of size 1 and 2 for single-end and paired-end data,
-          respectively.
-        pattern: "*.{fq,fastq,fq.gz,fastq.gz}"
+    - - meta:
+                type: map
+                description: |
+                    Groovy Map containing sample information
+                    e.g. [ id:'sample1', single_end:false ]
+        - reads:
+                type: file
+                description: |
+                    List of input FastQ files of size 1 and 2 for single-end and paired-end data,
+                    respectively.
+                pattern: "*.{fq,fastq,fq.gz,fastq.gz}"
 
 output:
-  - html:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'sample1', single_end:false ]
-      - "*.html":
-          type: file
-          description: FastQC report
-          pattern: "*_fastqc.html"
-  - zip:
-      - meta:
-          type: map
-      - "*.zip":
-          type: file
-          description: FastQC data archive
-          pattern: "*_fastqc.zip"
-  - versions:
-      - "versions.yml":
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
+    - html:
+            - meta:
+                    type: map
+                    description: |
+                        Groovy Map containing sample information
+                        e.g. [ id:'sample1', single_end:false ]
+            - "*.html":
+                    type: file
+                    description: FastQC report
+                    pattern: "*_fastqc.html"
+    - zip:
+            - meta:
+                    type: map
+            - "*.zip":
+                    type: file
+                    description: FastQC data archive
+                    pattern: "*_fastqc.zip"
+    - versions:
+            - "versions.yml":
+                    type: file
+                    description: File containing software versions
+                    pattern: "versions.yml"
 
 authors:
-  - "@Franzx7"
+    - "@Franzx7"
 maintainers:
-  - "@Franzx7"
+    - "@Franzx7"

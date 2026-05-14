@@ -1,6 +1,6 @@
 ---
 channels:
-  - conda-forge
-  - bioconda
+    - conda-forge
+    - bioconda
 dependencies:
-  - "bioconda::star-fusion=1.12.0"
+    - "bioconda::star-fusion=1.12.0"

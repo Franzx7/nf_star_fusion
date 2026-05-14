@@ -2,50 +2,50 @@
 name: "multiqc"
 description: "Aggregate quality control reports across multiple samples"
 keywords:
-  - quality control
-  - qc
-  - aggregation
-  - multiqc
+    - quality control
+    - qc
+    - aggregation
+    - multiqc
 tools:
-  - "multiqc":
-      description: "Aggregate results from bioinformatics analyses"
-      homepage: "https://multiqc.info/"
-      documentation: "https://multiqc.info/docs/"
-      tool_dev_url: "https://github.com/ewels/MultiQC"
-      licence: ["GPL v3"]
-      identifier: biotools:multiqc
+    - "multiqc":
+            description: "Aggregate results from bioinformatics analyses"
+            homepage: "https://multiqc.info/"
+            documentation: "https://multiqc.info/docs/"
+            tool_dev_url: "https://github.com/ewels/MultiQC"
+            licence: ["GPL v3"]
+            identifier: biotools:multiqc
 
 input:
-  - - qc_files:
-        type: file
-        description: |
-          Quality control result files from various tools
-          (FastQC, STAR logs, etc.)
-        pattern: "*"
-  - - log_files:
-        type: file
-        description: |
-          Log files from alignment and other processes
-        pattern: "*"
+    - - qc_files:
+                type: file
+                description: |
+                    Quality control result files from various tools
+                    (FastQC, STAR logs, etc.)
+                pattern: "*"
+    - - log_files:
+                type: file
+                description: |
+                    Log files from alignment and other processes
+                pattern: "*"
 
 output:
-  - report:
-      - "multiqc_report.html":
-          type: file
-          description: MultiQC HTML report
-          pattern: "multiqc_report.html"
-  - data:
-      - "multiqc_data":
-          type: directory
-          description: MultiQC data directory
-          pattern: "multiqc_data"
-  - versions:
-      - "versions.yml":
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
+    - report:
+            - "multiqc_report.html":
+                    type: file
+                    description: MultiQC HTML report
+                    pattern: "multiqc_report.html"
+    - data:
+            - "multiqc_data":
+                    type: directory
+                    description: MultiQC data directory
+                    pattern: "multiqc_data"
+    - versions:
+            - "versions.yml":
+                    type: file
+                    description: File containing software versions
+                    pattern: "versions.yml"
 
 authors:
-  - "@Franzx7"
+    - "@Franzx7"
 maintainers:
-  - "@Franzx7"
+    - "@Franzx7"

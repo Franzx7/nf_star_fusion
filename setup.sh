@@ -22,20 +22,20 @@ echo " Directories created"
 echo ""
 echo "Creating example samplesheet..."
 if [ ! -f "samplesheet.csv" ]; then
- cp samplesheet.example.csv samplesheet.csv
- echo " samplesheet.csv created (update with your sample paths)"
+    cp samplesheet.example.csv samplesheet.csv
+    echo " samplesheet.csv created (update with your sample paths)"
 else
- echo " samplesheet.csv already exists, skipping"
+    echo " samplesheet.csv already exists, skipping"
 fi
 
 # Create example params file
 echo ""
 echo "Creating example params file..."
 if [ ! -f "params.json" ]; then
- cp params.example.json params.json
- echo " params.json created (update with your settings)"
+    cp params.example.json params.json
+    echo " params.json created (update with your settings)"
 else
- echo " params.json already exists, skipping"
+    echo " params.json already exists, skipping"
 fi
 
 # Show setup summary
